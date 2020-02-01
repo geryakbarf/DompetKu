@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DompetKu</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="rekap">Rekap</string>
+    <string name="saldo">Sisa Saldo</string>
+    <string name="pemasukan">Pemasukan</string>
+    <string name="pengeluaran">Pengeluaran</string>
+    <string name="data_hari_ini">Data Hari Ini</string>
+</resources>
