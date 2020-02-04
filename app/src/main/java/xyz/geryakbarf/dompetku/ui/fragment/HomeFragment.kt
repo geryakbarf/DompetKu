@@ -10,9 +10,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_home.*
 import xyz.geryakbarf.dompetku.R
+import xyz.geryakbarf.dompetku.adapter.AdapterSaldo
+import xyz.geryakbarf.dompetku.models.SaldoModels
 import xyz.geryakbarf.dompetku.utils.SQLiteHelper
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -31,6 +34,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var etNama: EditText
     private lateinit var etSaldo: EditText
     private lateinit var jenis: String
+    private var list: ArrayList<SaldoModels> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +49,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         db = SQLiteHelper(view.context)
         btnTambahMasuk.setOnClickListener(this)
         btnTambahKeluar.setOnClickListener(this)
+        rvTransaksi.setHasFixedSize(true)
 
         //Instansiasi Alert DIalog
         alertDialog = AlertDialog.Builder(view.context).create()
@@ -56,6 +61,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         btnSimpan = dialogView.findViewById(R.id.btnSimpan)
         btnCancel = dialogView.findViewById(R.id.btnBatal)
         initialCheck()
+        showData()
 
         btnCancel.setOnClickListener {
             alertDialog.dismiss()
@@ -79,6 +85,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 if (isInserted) {
                     alertDialog.dismiss()
                     initialCheck()
+                    showData()
                     Toast.makeText(view.context, "Data berhasil disimpan", Toast.LENGTH_SHORT)
                         .show()
                 } else
@@ -91,6 +98,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 db.addCatatan(nama, saldo, date, jenis)
                 alertDialog.dismiss()
                 initialCheck()
+                showData()
                 Toast.makeText(view.context, "Data berhasil disimpan", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -113,6 +121,20 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun getToday(): String {
         val sdf = SimpleDateFormat("dd MMM yyyy")
         return sdf.format(Date())
+    }
+
+    private fun showData() {
+        list.clear()
+        val res = db.getTodayNote(getToday())
+        if (res.count > 0) {
+            while (res.moveToNext()) {
+                val dataSaldo: SaldoModels =
+                    SaldoModels(res.getString(1), res.getString(0), res.getString(2), res.getInt(3))
+                list.add(dataSaldo)
+            }
+        }
+        rvTransaksi.layoutManager = LinearLayoutManager(context)
+        rvTransaksi.adapter = AdapterSaldo(list)
     }
 
     override fun onClick(p0: View?) {
