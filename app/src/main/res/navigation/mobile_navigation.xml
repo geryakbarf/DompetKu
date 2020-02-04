@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="xyz.geryakbarf.dompetku.ui.home.HomeFragment"
+        android:name="xyz.geryakbarf.dompetku.ui.fragment.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            app:destination="@id/navigation_rekap" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_rekap"
-        android:name="xyz.geryakbarf.dompetku.ui.dashboard.DashboardFragment"
+        android:name="xyz.geryakbarf.dompetku.ui.fragment.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard">
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="xyz.geryakbarf.dompetku.ui.notifications.NotificationsFragment"
+        android:name="xyz.geryakbarf.dompetku.ui.fragment.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

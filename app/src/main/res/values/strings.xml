@@ -8,4 +8,9 @@
     <string name="pemasukan">Pemasukan</string>
     <string name="pengeluaran">Pengeluaran</string>
     <string name="data_hari_ini">Data Hari Ini</string>
+    <string name="tambah_data_keuangan">Tambah Data Keuangan</string>
+    <string name="nama_transaksi">Nama Transaksi</string>
+    <string name="saldo1">Saldo</string>
+    <string name="simpan">Simpan</string>
+    <string name="batal">Batal</string>
 </resources>

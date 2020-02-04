@@ -7,7 +7,7 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_rekap"
         android:icon="@drawable/rekap"
         android:title="@string/rekap" />
 
